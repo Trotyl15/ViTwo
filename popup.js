@@ -42,9 +42,17 @@ $(function () {
             chrome.tabs.sendMessage(activeTab.id, { "state": "reload" });
         });
     }
+
+    function connect() {
+        chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
+            var activeTab = tabs[0];
+            chrome.tabs.sendMessage(activeTab.id, { "state": "connect" });
+        });
+    }
+
     $("#play").on("click", play);
     $("#pause").on("click", pause);
     $("#reload").on("click", reload);
-
+    $("#connect").on("click", connect);
 
 });
