@@ -44,10 +44,14 @@ $(function () {
     }
 
     function connect() {
-        chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
-            var activeTab = tabs[0];
-            chrome.tabs.sendMessage(activeTab.id, { "state": "connect" });
-        });
+        if($("#room").val().length<3){
+            alert("Minimum length is 3 characters")
+        }else{
+            chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
+                var activeTab = tabs[0];
+                chrome.tabs.sendMessage(activeTab.id, { "state": "connect"+$("#room").val()});
+            });        
+        }
     }
 
     $("#play").on("click", play);

@@ -21,18 +21,20 @@ chrome.runtime.onMessage.addListener(
     if (request.state) {
       received = true;
     }
-    if (request.state == "play") {
+    if (request.state.includes("play")) {
+      console.log("enter if")
       video.play();
-    } else if (request.state == "pause") {
+    } else if (request.state.includes("pause")) {
       video.pause();
-    } else if (request.state == "reload") {
+    } else if (request.state.includes("reload")) {
       video.remove();
       video = document.getElementsByTagName("video")[0];
       start();
-    } else if (request.state == "connect") {
-      connect();
+    } else if (request.state.slice(0, 7) == "connect") {
+      connect(request.state.slice(7));
     }
   }
+
 );
 
 
@@ -44,7 +46,7 @@ function start() {
     if (!received && selfSetTime) {
       console.log("seeked"); //only use seeked not canplay to avoid 
       console.log(video.currentTime);
-      socket.send("seeked"+video.currentTime);
+      socket.send("seeked" + video.currentTime);
     }
     received = false;
     selfSetTime = true;
@@ -68,8 +70,8 @@ function start() {
   }
 }
 
-function connect() {
-  socket = new WebSocket('ws://localhost:5000');
+function connect(room) {
+  socket = new WebSocket('wss://websocket-server-production-bb30.up.railway.app');
   // Connection opened
   socket.addEventListener('open', function (event) {
     console.log('Connected to the WS Server!')
@@ -83,13 +85,19 @@ function connect() {
   // Listen for messages
   socket.addEventListener('message', function (event) {
     console.log('Message from server ', event.data);
-    if(event.data == "pause"){
+    if (event.data.includes("pause")) {
       video.pause();
-    }else if(event.data == "play"){
+    } else if (event.data.includes("play")) {
       video.play();
-    }else if(event.data.substring(0,6)=="seeked"){
-      video.currentTime = event.data.substring(6);
+    } else if (event.data.includes("seeked")) {
+      video.currentTime = event.data.substring(21);
       selfSetTime = false;
+    } else if (event.data.includes("Enter Room Code")) {
+      socket.send("")
+      socket.send(room)
+    } else if (event.data.includes("Enter your Nickname")) {
+      socket.send("")
+      socket.send(Math.random() * 1000);
     }
   });
   // Send a msg to the websocket
