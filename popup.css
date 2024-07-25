@@ -2,7 +2,6 @@ html
 {
     width: 240px;  /* max: 800px */
     height: 120px; /* max: 600px */
-    /* background-color: aqua; */
     background-image: url("icons/bg.png");
     background-color: #ffc5b5;
 }

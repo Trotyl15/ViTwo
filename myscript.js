@@ -37,11 +37,10 @@ chrome.runtime.onMessage.addListener(
 
 
 function start() {
-  // alert("started");
   chrome.runtime.sendMessage({ "duration": video.duration });
   video.onseeked = function () {
     if (!received && selfSetTime) {
-      console.log("seeked"); //only use seeked not canplay to avoid 
+      console.log("seeked"); // use seeked not canplay
       console.log(video.currentTime);
       socket.send("seeked" + video.currentTime);
     }

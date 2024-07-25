@@ -28,7 +28,7 @@
 ## Usage Instructions
 
 1. **Check Video Duration**
-   - Ensure the duration displayed in ViTwo matches the actual video duration. If not, click the "Reload" button.
+   - Ensure the duration displayed in ViTwo matches the actual video duration. If not, click the "reload" button.
 
 2. **Connect with Friends**
    - Enter a room number that you and your friends have agreed upon.
