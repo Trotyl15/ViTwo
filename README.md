@@ -10,15 +10,17 @@
    - Drag and drop the downloaded zip file from your file manager onto the extensions page.
    
    **Alternatively:**
+   - Unzip the file.
    - Turn on the Developer Mode switch.
    - Press "Load unpacked" and select the folder you just downloaded.
 
-3. **Install in Edge**
+4. **Install in Edge**
    - Navigate to `edge://extensions/`.
    - Drag and drop the downloaded zip file from your file manager onto the extensions page.
    - Scroll down and find the extension under the "From other sources" section.
    
    **Alternatively:**
+   - Unzip the file.
    - Turn on the Developer Mode switch.
    - Press "Load unpacked" and select the folder you just downloaded.
    - Scroll down and find the extension under the "From other sources" section.
