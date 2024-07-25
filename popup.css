@@ -1,6 +1,18 @@
 html
 {
-    width: 250px;  /* max: 800px */
-    height: 300px; /* max: 600px */
+    width: 240px;  /* max: 800px */
+    height: 120px; /* max: 600px */
     /* background-color: aqua; */
+    background-image: url("icons/bg.png");
+    background-color: #ffc5b5;
+}
+
+#durationLabel {
+    margin-top: 2px;
+}
+div {
+    background-color: #fff5eb;
+    width: 100px;
+    height: 17px;
+    padding: 2px;
 }

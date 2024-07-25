@@ -6,9 +6,6 @@ $(document).ready(function () {
   console.log("ready!");
   console.log($("video")[0]);
   video = document.getElementsByTagName("video")[0];
-
-  // $("#currentTime")[0].text(video.currentTime);
-  // $("#duration")[0].text(video.duration);
 });
 
 
@@ -98,6 +95,8 @@ function connect(room) {
     } else if (event.data.includes("Enter your Nickname")) {
       socket.send("")
       socket.send(Math.random() * 1000);
+    } else if(event.data.includes("Connected to room")) {
+      alert(event.data.replace(/\u001b\[[0-9;]*m/g, '').replace(/>$/, '')+"⊂彡☆))∀`)")
     }
   });
   // Send a msg to the websocket
