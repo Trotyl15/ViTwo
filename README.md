@@ -1,5 +1,5 @@
 # ViTwo - Watch Videos Together in Sync
-
+[English](README.md) | [中文](README_cn.md)
 ## How to Use ViTwo in Chrome and Edge
 
 1. **Download the Extension**
