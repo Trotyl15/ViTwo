@@ -2,12 +2,27 @@
 var received = false;
 var selfSetTime = true;
 var socket;
+
 $(document).ready(function () {
-  console.log("ready!");
-  console.log($("video")[0]);
-  video = document.getElementsByTagName("video")[0];
+  findVideo();
 });
 
+function findVideo() {
+  console.log("ready!");
+  video = document.getElementsByTagName("video")[0];
+  var i = 0;
+  if (!video) {
+    for (var iframe of document.getElementsByTagName("iframe")) {
+      if (iframe.contentDocument) {
+        video = iframe.contentDocument.querySelector("video");
+      }
+      console.log("video" + video);
+      if (video) {
+        break;
+      }
+    }
+  }
+}
 
 chrome.runtime.onMessage.addListener(
   function (request, sender, sendResponse) {
@@ -19,13 +34,14 @@ chrome.runtime.onMessage.addListener(
       received = true;
     }
     if (request.state.includes("play")) {
-      console.log("enter if")
       video.play();
     } else if (request.state.includes("pause")) {
       video.pause();
     } else if (request.state.includes("reload")) {
-      video.remove();
-      video = document.getElementsByTagName("video")[0];
+      if (video) {
+        video.remove();
+      }
+      findVideo();
       start();
     } else if (request.state.slice(0, 7) == "connect") {
       connect(request.state.slice(7));
@@ -94,8 +110,8 @@ function connect(room) {
     } else if (event.data.includes("Enter your Nickname")) {
       socket.send("")
       socket.send(Math.random() * 1000);
-    } else if(event.data.includes("Connected to room")) {
-      alert(event.data.replace(/\u001b\[[0-9;]*m/g, '').replace(/>$/, '')+"⊂彡☆))∀`)")
+    } else if (event.data.includes("Connected to room")) {
+      alert(event.data.replace(/\u001b\[[0-9;]*m/g, '').replace(/>$/, '') + "⊂彡☆))∀`)")
     }
   });
   // Send a msg to the websocket
