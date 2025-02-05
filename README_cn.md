@@ -1,7 +1,11 @@
 # ViTwo - 同步观看视频
 
 ## 如何在 Chrome 和 Edge 中使用 ViTwo
+### 方法一：从 Chrome Extension Store 下载
 
+[ViTwo - Chrome Web Store](https://chromewebstore.google.com/detail/vitwo/ldkgjjafibdipikaopgipdkaifjngblc)
+
+### 方法二：下载源代码
 1. **下载扩展程序**
    - 前往 [ViTwo Releases 页面](https://github.com/Trotyl15/ViTwo/releases) 并下载 zip 文件。
 
