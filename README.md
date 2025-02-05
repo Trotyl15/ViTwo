@@ -1,7 +1,11 @@
 # ViTwo - Watch Videos Together in Sync
 [English](README.md) | [中文](README_cn.md)
 ## How to Use ViTwo in Chrome and Edge
+### Method 1: Get it from the Google extension store
 
+[ViTwo - Chrome Web Store](https://chromewebstore.google.com/detail/vitwo/ldkgjjafibdipikaopgipdkaifjngblc)
+
+### Method 2: Use the source code
 1. **Download the Extension**
    - Go to the [ViTwo Releases page](https://github.com/Trotyl15/ViTwo/releases) and download the zip file.
 
