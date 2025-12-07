@@ -1,4 +1,4 @@
-﻿var video;
+var video;
 var received = false;
 var selfSetTime = true;
 var socket;
@@ -98,10 +98,16 @@ function connect(room) {
   socket.addEventListener('message', function (event) {
     console.log('Message from server ', event.data);
     if (event.data.includes("pause")) {
+      // mark as remote action to avoid echoing pause back
+      received = true;
       video.pause();
     } else if (event.data.includes("play")) {
+      // mark as remote action to avoid echoing play back
+      received = true;
       video.play();
     } else if (event.data.includes("seeked")) {
+      // suppress emitting seek updates caused by a remote sync
+      received = true;
       video.currentTime = event.data.substring(21);
       selfSetTime = false;
     } else if (event.data.includes("Enter Room Code")) {

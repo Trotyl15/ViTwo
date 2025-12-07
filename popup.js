@@ -3,6 +3,15 @@ chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
     chrome.tabs.sendMessage(activeTab.id, { "message": "start" });
 });
 
+// Restore last used room if available
+$(function () {
+    chrome.storage?.local.get(['room'], function (result) {
+        if (result.room) {
+            $("#room").val(result.room);
+        }
+    });
+});
+
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
         console.log(sender.tab ?
@@ -16,6 +25,10 @@ chrome.runtime.onMessage.addListener(
             var time = new Date(request.duration * 1000).toISOString().substring(14, 19)
         }
         $("#duration").text(time)
+        if (request.room !== undefined) {
+            $("#room").val(request.room);
+            chrome.storage?.local.set({ room: request.room });
+        }
     }
 );
 
@@ -47,6 +60,7 @@ $(function () {
         if($("#room").val().length<3){
             alert("Minimum length is 3 characters")
         }else{
+            chrome.storage?.local.set({ room: $("#room").val() });
             chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
                 var activeTab = tabs[0];
                 chrome.tabs.sendMessage(activeTab.id, { "state": "connect"+$("#room").val()});

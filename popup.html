@@ -10,12 +10,29 @@
 
 </head>
 <body>
-    <button id="play">play</button>
-    <button id="pause">pause</button>
-    <button id="reload">reload</button>
-    <input type="text" placeholder="room #" id="room">
-    <button id="connect">connect</button>
-    <div id="durationLabel">Duration:</div>
-    <div id="duration"></div>
+    <div class="card">
+        <div class="header">
+            <div class="title">ViTwo</div>
+            <div class="subtitle">Watch together <span class="bg-mark" aria-hidden="true"></span></div>
+        </div>
+
+        <div class="controls-row">
+            <button class="btn primary" id="play">Play</button>
+            <button class="btn ghost" id="pause">Pause</button>
+            <button class="btn ghost" id="reload">Reload</button>
+        </div>
+
+        <div class="room-row">
+            <input type="text" placeholder="Room #" id="room">
+            <button class="btn accent" id="connect">Connect</button>
+        </div>
+
+        <div class="info">
+            <div class="info-item">
+                <div class="info-label">Duration</div>
+                <div class="info-value" id="duration">--:--</div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
